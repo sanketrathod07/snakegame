@@ -1,6 +1,9 @@
 const canvas = document.getElementById("canvas");
 const restartBtn = document.getElementById("restart-btn");
 
+let score = 0; // Initialize the score
+
+
 const ROWS = 30;
 const COLS = 50;
 const PIXEL = 10;
@@ -167,6 +170,10 @@ function stopGame(success) {
 }
 
 function startGame() {
+
+  score = 0; // Reset the score when the game starts
+  updateScore();
+  
   directionQueue = [];
   currentDirection = moveRight;
   currentSnake = makeInitialSnake();
@@ -315,4 +322,25 @@ function checkIntegrity_SLOW() {
 
 function areSameSets_SLOW(a, b) {
   return JSON.stringify([...a].sort()) === JSON.stringify([...b].sort());
+}
+
+
+
+// Update the score when food is eaten
+function pushHead(nextHead) {
+  currentSnake.push(nextHead);
+  let key = toKey(nextHead);
+  currentVacantKeys.delete(key);
+  currentSnakeKeys.add(key);
+
+  // Check if the snake ate food
+  if (key === currentFoodKey) {
+    score += 10; // Increment the score
+    updateScore();
+  }
+}
+
+function updateScore() {
+  const scoreElement = document.getElementById("score-value");
+  scoreElement.textContent = score;
 }
