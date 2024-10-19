@@ -8,6 +8,9 @@
 
     <style>
       /* Reset */
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap");
+
       * {
         margin: 0;
         padding: 0;
@@ -15,7 +18,7 @@
       }
 
       body {
-        font-family: "Press Start 2P", cursive;
+        font-family: "Orbitron", sans-serif;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -28,6 +31,7 @@
       a {
         color: #f39c12;
         text-decoration: none;
+        font-family: "Playwrite GB S", cursive;
       }
 
       h1 {
@@ -43,13 +47,13 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        height: 100%;
+        height: 65%;
         justify-content: space-between;
       }
 
       #canvas {
         width: 500px;
-        height: 300px;
+        height: 410px;
         background-color: #000;
         border: 10px solid #2ecc71;
         box-shadow: 0 0 20px #2ecc71;
@@ -64,6 +68,7 @@
         border-radius: 5px;
         color: white;
         font-size: 1.5rem;
+        font-weight: 600;
         cursor: pointer;
         text-transform: uppercase;
         box-shadow: 0 5px #c0392b;
@@ -144,9 +149,6 @@
         font-size: 1.5rem;
         box-shadow: 0 0 10px #2ecc71;
       }
-
-      /* Font import for retro style */
-      @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
     </style>
   </head>
   <body>

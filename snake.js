@@ -4,8 +4,8 @@ const restartBtn = document.getElementById("restart-btn");
 let score = 0; // Initialize the score
 
 
-const ROWS = 30;
-const COLS = 50;
+let ROWS = window.innerWidth > 600 ? 38 : 39;
+const COLS = 48;
 const PIXEL = 10;
 
 const pixels = new Map();
@@ -20,6 +20,11 @@ let gameInterval = null;
 restartBtn.addEventListener("click", () => location.reload());
 
 function initializeCanvas() {
+  // Clear existing canvas
+  canvas.innerHTML = "";
+  pixels.clear();
+
+  // Create pixels based on ROWS and COLS
   for (let i = 0; i < ROWS; i++) {
     for (let j = 0; j < COLS; j++) {
       let pixel = document.createElement("div");
@@ -36,7 +41,15 @@ function initializeCanvas() {
   }
 }
 
+function updateCanvasSize() {
+  ROWS = window.innerWidth > 600 ? 25 : 39; // Update ROWS based on window size
+  initializeCanvas();
+}
+
 initializeCanvas();
+
+// Listen for window resize events
+window.addEventListener("resize", updateCanvasSize);
 
 function drawCanvas() {
   for (let i = 0; i < ROWS; i++) {
@@ -158,6 +171,13 @@ window.addEventListener("keydown", (e) => {
       stopGame(false);
       startGame();
       break;
+    case "Enter":
+      if (pressedR) {
+        stopGame(false);
+        startGame();
+        pressedR = false;
+      }
+      break;
     case " ":
       step();
       break;
@@ -173,7 +193,7 @@ function startGame() {
 
   score = 0; // Reset the score when the game starts
   updateScore();
-  
+
   directionQueue = [];
   currentDirection = moveRight;
   currentSnake = makeInitialSnake();
