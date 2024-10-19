@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake Game</title>
+
+    <style>
+      /* Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Press Start 2P", cursive;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        background-color: #111;
+        color: #f5f5f5;
+        padding-top: 4rem;
+      }
+
+      a {
+        color: #f39c12;
+        text-decoration: none;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        color: #2ecc71;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 0px #27ae60;
+      }
+      .nameHeading {
+        margin-bottom: 2rem;
+      }
+      .canvasMainDiv {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        justify-content: space-between;
+      }
+
+      #canvas {
+        width: 500px;
+        height: 300px;
+        background-color: #000;
+        border: 10px solid #2ecc71;
+        box-shadow: 0 0 20px #2ecc71;
+        position: relative;
+      }
+
+      #restart-btn {
+        margin-top: 15px;
+        padding: 10px 20px;
+        background-color: #e74c3c;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        text-transform: uppercase;
+        box-shadow: 0 5px #c0392b;
+      }
+
+      #restart-btn:active {
+        transform: translateY(3px);
+        box-shadow: 0 2px #c0392b;
+      }
+
+      /* Button layout for controls */
+      #controls {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-top: 3rem;
+      }
+
+      .control-btn {
+        width: 70px;
+        height: 70px;
+        font-size: 30px;
+        background-color: #2ecc71;
+        border: 3px solid #27ae60;
+        border-radius: 10px;
+        color: #111;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 5px #16a085;
+      }
+
+      .control-btn:active {
+        transform: translateY(3px);
+        box-shadow: 0 2px #16a085;
+      }
+
+      /* Add hover effects to buttons */
+      .control-btn:hover {
+        background-color: #27ae60;
+      }
+
+      @media only screen and (max-width: 768px) {
+        body {
+          zoom: 130%;
+        }
+      }
+
+      @media only screen and (max-width: 500px) {
+        body {
+          zoom: 80%;
+        }
+      }
+      .canvasMainDiv {
+        height: fit-content;
+      }
+
+      /* Font import for retro style */
+      @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+    </style>
+  </head>
+  <body>
+    <h1>Snake Game</h1>
+    <span class="nameHeading">
+      by
+      <a href="https://www.linkedin.com/in/sanketrathod757/" target="_blank"
+        >Sanket Rathod</a
+      >
+    </span>
+
+    <div class="canvasMainDiv">
+      <div id="canvas"></div>
+
+      <!-- Mobile controls -->
+      <div id="controls">
+        <div></div>
+        <button class="control-btn" id="up-btn">↑</button>
+        <div></div>
+        <button class="control-btn" id="left-btn">←</button>
+        <button class="control-btn" id="down-btn">↓</button>
+        <button class="control-btn" id="right-btn">→</button>
+        <div></div>
+      </div>
+    </div>
+    <button id="restart-btn">Restart</button>
+
+    <script src="snake.js"></script>
+
+    <script>
+      // Add event listeners to mobile buttons for direction control
+      const upBtn = document.getElementById("up-btn");
+      const downBtn = document.getElementById("down-btn");
+      const leftBtn = document.getElementById("left-btn");
+      const rightBtn = document.getElementById("right-btn");
+
+      upBtn.addEventListener("click", () => directionQueue.push(moveUp));
+      downBtn.addEventListener("click", () => directionQueue.push(moveDown));
+      leftBtn.addEventListener("click", () => directionQueue.push(moveLeft));
+      rightBtn.addEventListener("click", () => directionQueue.push(moveRight));
+    </script>
+  </body>
+</html>
